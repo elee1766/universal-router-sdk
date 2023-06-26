@@ -2291,10 +2291,9 @@
     "@uniswap/v2-sdk" "^3.0.1"
     "@uniswap/v3-sdk" "^3.8.3"
 
-"@uniswap/sdk-core@^3.0.0-alpha.3", "@uniswap/sdk-core@^3.0.1":
+"@uniswap/sdk-core@^3.0.0-alpha.3", "@uniswap/sdk-core@^3.0.1", "@uniswap/sdk-core@git+https://github.com/elee1766/uni-sdk-core#main":
   version "3.2.6"
-  resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-3.2.6.tgz#1a652516fab0c6bc1420c2226648da967a10f52a"
-  integrity sha512-MvH/3G0W0sM2g7XjaUy9qU7IabxL/KQp/ucU0AQGpVxiTaAhmVRtsjkkv9UDyzpIXVrmevl4kRgV7KKE29UuXA==
+  resolved "git+https://github.com/elee1766/uni-sdk-core#49f7ab85b904b29e7f68227003d93dfd2b29e876"
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
