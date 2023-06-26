@@ -95,7 +95,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // boba
   [288]: {
-    router: '',
+    router: '0x4ba622997559f9b5ac68751d7fc3deecc23a0e88',
     weth: '0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000',
     creationBlock: 969351,
   }
