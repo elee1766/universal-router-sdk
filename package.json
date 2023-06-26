@@ -15,6 +15,7 @@
   },
   "scripts": {
     "prepare": "npm run build",
+    "prepack": "npm run build",
     "test:all": "yarn test:hardhat && yarn test:forge",
     "test:hardhat": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' hardhat test",
     "test:forge": "forge test",
