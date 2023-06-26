@@ -87,6 +87,13 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     weth: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
     creationBlock: 31583684,
   },
+  //moonbeam
+  [1284]: {
+    router: '0xc507E22BA3140dc0A79fDF27e03c98aa20f3ee66',
+    weth: '0x30d2a9f5fdf90ace8c17952cbb4ee48a55d916a7',
+    creationBlock: 3340490,
+  },
+  // boba
   [288]: {
     router: '0x759E8B0cb9d65291e258aE3e043258ae1dD0df16',
     weth: '0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000',
