@@ -242,7 +242,8 @@ var CHAIN_CONFIGS = (_CHAIN_CONFIGS = {}, _CHAIN_CONFIGS[1] = {
 }, _CHAIN_CONFIGS[288] = {
   router: '0x4ba622997559f9b5ac68751d7fc3deecc23a0e88',
   weth: '0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000',
-  creationBlock: 969351
+  creationBlock: 969351,
+  permit2: '0xF80c91442D3EF66632958C0d395667075FC82fB0'
 }, _CHAIN_CONFIGS);
 var UNIVERSAL_ROUTER_ADDRESS = function UNIVERSAL_ROUTER_ADDRESS(chainId) {
   if (!(chainId in CHAIN_CONFIGS)) throw new Error("Universal Router not deployed on chain " + chainId);
@@ -252,6 +253,11 @@ var WETH_ADDRESS = function WETH_ADDRESS(chainId) {
   if (!(chainId in CHAIN_CONFIGS)) throw new Error("Universal Router not deployed on chain " + chainId);
   if (CHAIN_CONFIGS[chainId].weth == WETH_NOT_SUPPORTED_ON_CHAIN) throw new Error("Chain " + chainId + " does not have WETH");
   return CHAIN_CONFIGS[chainId].weth;
+};
+var RESOLVE_PERMIT2_ADDRESS = function RESOLVE_PERMIT2_ADDRESS(chainId) {
+  if (!(chainId in CHAIN_CONFIGS)) return PERMIT2_ADDRESS;
+  if (CHAIN_CONFIGS[chainId].permit2 === undefined) return PERMIT2_ADDRESS;
+  return CHAIN_CONFIGS[chainId].permit2;
 };
 var PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3';
 var CONTRACT_BALANCE = /*#__PURE__*/BigNumber.from(2).pow(255);
@@ -10502,5 +10508,5 @@ var UnwrapWETH = /*#__PURE__*/function () {
   return UnwrapWETH;
 }();
 
-export { CryptopunkTrade, FoundationTrade, LooksRareV2Trade, Market, NFT20Trade, NFTTrade, NFTXTrade, PERMIT2_ADDRESS, ROUTER_AS_RECIPIENT, RouterTradeType, SeaportTrade, SudoswapTrade, SwapRouter, TokenType, UNIVERSAL_ROUTER_ADDRESS, UniswapTrade, UnwrapWETH, WETH_ADDRESS, X2Y2Trade };
+export { CryptopunkTrade, FoundationTrade, LooksRareV2Trade, Market, NFT20Trade, NFTTrade, NFTXTrade, PERMIT2_ADDRESS, RESOLVE_PERMIT2_ADDRESS, ROUTER_AS_RECIPIENT, RouterTradeType, SeaportTrade, SudoswapTrade, SwapRouter, TokenType, UNIVERSAL_ROUTER_ADDRESS, UniswapTrade, UnwrapWETH, WETH_ADDRESS, X2Y2Trade };
 //# sourceMappingURL=universal-router-sdk.esm.js.map

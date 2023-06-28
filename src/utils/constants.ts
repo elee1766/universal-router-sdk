@@ -4,6 +4,7 @@ type ChainConfig = {
   router: string
   creationBlock: number
   weth: string
+  permit2?:string
 }
 
 const WETH_NOT_SUPPORTED_ON_CHAIN = '0x0000000000000000000000000000000000000000'
@@ -98,6 +99,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     router: '0x4ba622997559f9b5ac68751d7fc3deecc23a0e88',
     weth: '0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000',
     creationBlock: 969351,
+    permit2: '0xF80c91442D3EF66632958C0d395667075FC82fB0',
   }
 }
 
@@ -117,6 +119,11 @@ export const WETH_ADDRESS = (chainId: number): string => {
   if (CHAIN_CONFIGS[chainId].weth == WETH_NOT_SUPPORTED_ON_CHAIN) throw new Error(`Chain ${chainId} does not have WETH`)
 
   return CHAIN_CONFIGS[chainId].weth
+}
+export const RESOLVE_PERMIT2_ADDRESS = (chainId: number): string => {
+  if (!(chainId in CHAIN_CONFIGS)) return PERMIT2_ADDRESS
+  if (CHAIN_CONFIGS[chainId].permit2 === undefined) return PERMIT2_ADDRESS
+  return CHAIN_CONFIGS[chainId].permit2!
 }
 
 export const PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3'
