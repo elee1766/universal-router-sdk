@@ -57,6 +57,7 @@
   "dependencies": {
     "@uniswap/permit2-sdk": "^1.2.0",
     "@uniswap/router-sdk": "^1.6.0",
+    "@uniswap/sdk-core": "git+https://github.com/elee1766/uni-sdk-core#main",
     "@uniswap/universal-router": "1.4.3",
     "@uniswap/v2-sdk": "^3.2.0",
     "@uniswap/v3-sdk": "^3.10.0",

@@ -2289,7 +2289,8 @@
 
 "@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@git+https://github.com/elee1766/uni-sdk-core#main":
   version "4.3.6"
-  resolved "git+https://github.com/elee1766/uni-sdk-core#2602e9a59a9318cf157ac390c7b18f9a28661d42"
+  uid ad5923835f2c9b0ed78bb1cd5cfa9edecaddb891
+  resolved "git+https://github.com/elee1766/uni-sdk-core#ad5923835f2c9b0ed78bb1cd5cfa9edecaddb891"
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
