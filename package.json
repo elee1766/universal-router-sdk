@@ -1,6 +1,6 @@
 {
   "name": "@uniswap/universal-router-sdk",
-  "version": "1.6.3",
+  "version": "1.5.4",
   "description": "sdk for integrating with the Universal Router contracts",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -56,10 +56,10 @@
   },
   "dependencies": {
     "@uniswap/permit2-sdk": "^1.2.0",
-    "@uniswap/router-sdk": "^1.4.0",
+    "@uniswap/router-sdk": "^1.6.0",
     "@uniswap/universal-router": "1.4.3",
-    "@uniswap/v2-sdk": "^3.0.1",
-    "@uniswap/v3-sdk": "^3.9.0",
+    "@uniswap/v2-sdk": "^3.2.0",
+    "@uniswap/v3-sdk": "^3.10.0",
     "bignumber.js": "^9.0.2",
     "ethers": "^5.3.1"
   },
