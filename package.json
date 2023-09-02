@@ -1,5 +1,5 @@
 {
-  "name": "@uniswap/universal-router-sdk",
+  "name": "@gfxlabs/uniswap-universal-router-sdk",
   "version": "1.5.4",
   "description": "sdk for integrating with the Universal Router contracts",
   "main": "dist/index.js",
@@ -52,12 +52,12 @@
     "@uniswap/sdk-core": "git+https://github.com/elee1766/uni-sdk-core#main"
   },
   "resolutions": {
-    "@uniswap/sdk-core": "git+https://github.com/elee1766/uni-sdk-core#main"
+    "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core"
   },
   "dependencies": {
     "@uniswap/permit2-sdk": "^1.2.0",
     "@uniswap/router-sdk": "^1.6.0",
-    "@uniswap/sdk-core": "git+https://github.com/elee1766/uni-sdk-core#main",
+    "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core@4.3.6-1",
     "@uniswap/universal-router": "1.4.3",
     "@uniswap/v2-sdk": "^3.2.0",
     "@uniswap/v3-sdk": "^3.10.0",

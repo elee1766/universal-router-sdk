@@ -2287,10 +2287,22 @@
     "@uniswap/v2-sdk" "^3.2.0"
     "@uniswap/v3-sdk" "^3.10.0"
 
-"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@git+https://github.com/elee1766/uni-sdk-core#main":
+"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core":
   version "4.3.6"
-  uid ad5923835f2c9b0ed78bb1cd5cfa9edecaddb891
-  resolved "git+https://github.com/elee1766/uni-sdk-core#ad5923835f2c9b0ed78bb1cd5cfa9edecaddb891"
+  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.3.6.tgz#fe22f78ded85b8068152dee73ad0eac7f5aa4e6b"
+  integrity sha512-0t0IgxR4SU/FCHoYbXTtECcUXTzqn/NbF4rLNClJOHOfUiyWBusAJPB/ANCfbUjwX0CD/rpEsTX1fzXrX5pZRQ==
+  dependencies:
+    "@ethersproject/address" "^5.0.2"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.4"
+    tiny-invariant "^1.1.0"
+    toformat "^2.0.0"
+
+"@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.3.6-1":
+  version "4.3.6-1"
+  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.3.6-1.tgz#e0c01a66d4ab771f301d72274a1a7fddac80cf3c"
+  integrity sha512-DHyiaBhCbRqJGicwogPasNfAPT0egEoh8bV/tGySIFvXEeq0M4kancuPoVXN5rZsUk6GDhMBGJDIbahMnhwJpA==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
