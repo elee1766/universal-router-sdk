@@ -1,13 +1,19 @@
-import invariant from 'tiny-invariant';
-import { abi as abi$7 } from '@uniswap/universal-router/artifacts/contracts/UniversalRouter.sol/UniversalRouter.json';
-import { Interface } from '@ethersproject/abi';
-import { BigNumber, ethers } from 'ethers';
-import JSBI from 'jsbi';
-import { defaultAbiCoder } from 'ethers/lib/utils';
-import { Trade, Pair } from '@uniswap/v2-sdk';
-import { Trade as Trade$1, encodeRouteToPath, Pool } from '@uniswap/v3-sdk';
-import { Protocol, MixedRouteTrade, partitionMixedRouteByProtocol, getOutputOfPools, MixedRouteSDK, MixedRoute, encodeMixedRouteToPath } from '@uniswap/router-sdk';
-import { TradeType, Percent } from '@uniswap/sdk-core';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var invariant = _interopDefault(require('tiny-invariant'));
+var UniversalRouter_json = require('@uniswap/universal-router/artifacts/contracts/UniversalRouter.sol/UniversalRouter.json');
+var abi$7 = require('@ethersproject/abi');
+var ethers = require('ethers');
+var JSBI = _interopDefault(require('jsbi'));
+var utils = require('ethers/lib/utils');
+var v2Sdk = require('@uniswap/v2-sdk');
+var v3Sdk = require('@uniswap/v3-sdk');
+var routerSdk = require('@uniswap/router-sdk');
+var sdkCore = require('@uniswap/sdk-core');
 
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function (target) {
@@ -67,20 +73,18 @@ function _createForOfIteratorHelperLoose(o, allowArrayLike) {
   throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-var RouterTradeType;
 (function (RouterTradeType) {
   RouterTradeType["UniswapTrade"] = "UniswapTrade";
   RouterTradeType["NFTTrade"] = "NFTTrade";
   RouterTradeType["UnwrapWETH"] = "UnwrapWETH";
-})(RouterTradeType || (RouterTradeType = {}));
+})(exports.RouterTradeType || (exports.RouterTradeType = {}));
 
 var NFTTrade = function NFTTrade(market, orders) {
-  this.tradeType = RouterTradeType.NFTTrade;
-  !(orders.length > 0) ? process.env.NODE_ENV !== "production" ? invariant(false, 'no buy Items') : invariant(false) : void 0;
+  this.tradeType = exports.RouterTradeType.NFTTrade;
+  !(orders.length > 0) ?  invariant(false, 'no buy Items')  : void 0;
   this.market = market;
   this.orders = orders;
 };
-var Market;
 (function (Market) {
   Market["Foundation"] = "foundation";
   Market["LooksRareV2"] = "looksrareV2";
@@ -91,13 +95,12 @@ var Market;
   Market["Cryptopunks"] = "cryptopunks";
   Market["X2Y2"] = "x2y2";
   Market["Element"] = "element";
-})(Market || (Market = {}));
-var TokenType;
+})(exports.Market || (exports.Market = {}));
 (function (TokenType) {
   TokenType["ERC721"] = "ERC721";
   TokenType["ERC1155"] = "ERC1155";
   TokenType["Cryptopunk"] = "Cryptopunk";
-})(TokenType || (TokenType = {}));
+})(exports.TokenType || (exports.TokenType = {}));
 
 var _ABI_DEFINITION;
 /**
@@ -174,7 +177,7 @@ var RoutePlanner = /*#__PURE__*/function () {
   return RoutePlanner;
 }();
 function createCommand(type, parameters) {
-  var encodedInput = defaultAbiCoder.encode(ABI_DEFINITION[type], parameters);
+  var encodedInput = utils.defaultAbiCoder.encode(ABI_DEFINITION[type], parameters);
   return {
     type: type,
     encodedInput: encodedInput
@@ -236,7 +239,8 @@ var CHAIN_CONFIGS = (_CHAIN_CONFIGS = {}, _CHAIN_CONFIGS[1] = {
   weth: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
   creationBlock: 31583684
 }, _CHAIN_CONFIGS[1284] = {
-  router: '',
+  router: '0x1F56F4e1648e96633c7FE79002036E967403CDfF',
+  permit2: '0xe96e30e92e01dc8a880f701b2d2160f93da18df7',
   weth: '0x30d2a9f5fdf90ace8c17952cbb4ee48a55d916a7',
   creationBlock: 3340490
 }, _CHAIN_CONFIGS[288] = {
@@ -260,7 +264,7 @@ var RESOLVE_PERMIT2_ADDRESS = function RESOLVE_PERMIT2_ADDRESS(chainId) {
   return CHAIN_CONFIGS[chainId].permit2;
 };
 var PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3';
-var CONTRACT_BALANCE = /*#__PURE__*/BigNumber.from(2).pow(255);
+var CONTRACT_BALANCE = /*#__PURE__*/ethers.BigNumber.from(2).pow(255);
 var ETH_ADDRESS = '0x0000000000000000000000000000000000000000';
 var ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 var SENDER_AS_RECIPIENT = '0x0000000000000000000000000000000000000001';
@@ -268,14 +272,14 @@ var ROUTER_AS_RECIPIENT = '0x0000000000000000000000000000000000000002';
 var OPENSEA_CONDUIT_SPENDER_ID = 0;
 var SUDOSWAP_SPENDER_ID = 1;
 
-var REFUND_ETH_PRICE_IMPACT_THRESHOLD = /*#__PURE__*/new Percent( /*#__PURE__*/JSBI.BigInt(50), /*#__PURE__*/JSBI.BigInt(100));
+var REFUND_ETH_PRICE_IMPACT_THRESHOLD = /*#__PURE__*/new sdkCore.Percent( /*#__PURE__*/JSBI.BigInt(50), /*#__PURE__*/JSBI.BigInt(100));
 // Wrapper for uniswap router-sdk trade entity to encode swaps for Universal Router
 // also translates trade objects from previous (v2, v3) SDKs
 var UniswapTrade = /*#__PURE__*/function () {
   function UniswapTrade(trade, options) {
     this.trade = trade;
     this.options = options;
-    this.tradeType = RouterTradeType.UniswapTrade;
+    this.tradeType = exports.RouterTradeType.UniswapTrade;
   }
   var _proto = UniswapTrade.prototype;
   _proto.encode = function encode(planner, _config) {
@@ -292,20 +296,20 @@ var UniswapTrade = /*#__PURE__*/function () {
     //   1. when there are >2 exact input trades. this is only a heuristic,
     //      as it's still more gas-expensive even in this case, but has benefits
     //      in that the reversion probability is lower
-    var performAggregatedSlippageCheck = this.trade.tradeType === TradeType.EXACT_INPUT && this.trade.routes.length > 2;
+    var performAggregatedSlippageCheck = this.trade.tradeType === sdkCore.TradeType.EXACT_INPUT && this.trade.routes.length > 2;
     var outputIsNative = this.trade.outputAmount.currency.isNative;
     var inputIsNative = this.trade.inputAmount.currency.isNative;
     var routerMustCustody = performAggregatedSlippageCheck || outputIsNative;
     for (var _iterator = _createForOfIteratorHelperLoose(this.trade.swaps), _step; !(_step = _iterator()).done;) {
       var swap = _step.value;
       switch (swap.route.protocol) {
-        case Protocol.V2:
+        case routerSdk.Protocol.V2:
           addV2Swap(planner, swap, this.trade.tradeType, this.options, payerIsUser, routerMustCustody);
           break;
-        case Protocol.V3:
+        case routerSdk.Protocol.V3:
           addV3Swap(planner, swap, this.trade.tradeType, this.options, payerIsUser, routerMustCustody);
           break;
-        case Protocol.MIXED:
+        case routerSdk.Protocol.MIXED:
           addMixedSwap(planner, swap, this.trade.tradeType, this.options, payerIsUser, routerMustCustody);
           break;
         default:
@@ -319,7 +323,7 @@ var UniswapTrade = /*#__PURE__*/function () {
         planner.addCommand(CommandType.SWEEP, [this.trade.outputAmount.currency.wrapped.address, this.options.recipient, this.trade.minimumAmountOut(this.options.slippageTolerance).quotient.toString()]);
       }
     }
-    if (inputIsNative && (this.trade.tradeType === TradeType.EXACT_OUTPUT || riskOfPartialFill(this.trade))) {
+    if (inputIsNative && (this.trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT || riskOfPartialFill(this.trade))) {
       // for exactOutput swaps that take native currency as input
       // we need to send back the change to the user
       planner.addCommand(CommandType.UNWRAP_WETH, [this.options.recipient, 0]);
@@ -332,14 +336,14 @@ function addV2Swap(planner, _ref, tradeType, options, payerIsUser, routerMustCus
   var route = _ref.route,
     inputAmount = _ref.inputAmount,
     outputAmount = _ref.outputAmount;
-  var trade = new Trade(route, tradeType == TradeType.EXACT_INPUT ? inputAmount : outputAmount, tradeType);
-  if (tradeType == TradeType.EXACT_INPUT) {
+  var trade = new v2Sdk.Trade(route, tradeType == sdkCore.TradeType.EXACT_INPUT ? inputAmount : outputAmount, tradeType);
+  if (tradeType == sdkCore.TradeType.EXACT_INPUT) {
     planner.addCommand(CommandType.V2_SWAP_EXACT_IN, [
     // if native, we have to unwrap so keep in the router for now
     routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), route.path.map(function (pool) {
       return pool.address;
     }), payerIsUser]);
-  } else if (tradeType == TradeType.EXACT_OUTPUT) {
+  } else if (tradeType == sdkCore.TradeType.EXACT_OUTPUT) {
     planner.addCommand(CommandType.V2_SWAP_EXACT_OUT, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), route.path.map(function (pool) {
       return pool.address;
     }), payerIsUser]);
@@ -350,16 +354,16 @@ function addV3Swap(planner, _ref2, tradeType, options, payerIsUser, routerMustCu
   var route = _ref2.route,
     inputAmount = _ref2.inputAmount,
     outputAmount = _ref2.outputAmount;
-  var trade = Trade$1.createUncheckedTrade({
+  var trade = v3Sdk.Trade.createUncheckedTrade({
     route: route,
     inputAmount: inputAmount,
     outputAmount: outputAmount,
     tradeType: tradeType
   });
-  var path = encodeRouteToPath(route, trade.tradeType === TradeType.EXACT_OUTPUT);
-  if (tradeType == TradeType.EXACT_INPUT) {
+  var path = v3Sdk.encodeRouteToPath(route, trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT);
+  if (tradeType == sdkCore.TradeType.EXACT_INPUT) {
     planner.addCommand(CommandType.V3_SWAP_EXACT_IN, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), path, payerIsUser]);
-  } else if (tradeType == TradeType.EXACT_OUTPUT) {
+  } else if (tradeType == sdkCore.TradeType.EXACT_OUTPUT) {
     planner.addCommand(CommandType.V3_SWAP_EXACT_OUT, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), path, payerIsUser]);
   }
 }
@@ -371,15 +375,15 @@ function addMixedSwap(planner, swap, tradeType, options, payerIsUser, routerMust
   var tradeRecipient = routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient;
   // single hop, so it can be reduced to plain v2 or v3 swap logic
   if (route.pools.length === 1) {
-    if (route.pools[0] instanceof Pool) {
+    if (route.pools[0] instanceof v3Sdk.Pool) {
       return addV3Swap(planner, swap, tradeType, options, payerIsUser, routerMustCustody);
-    } else if (route.pools[0] instanceof Pair) {
+    } else if (route.pools[0] instanceof v2Sdk.Pair) {
       return addV2Swap(planner, swap, tradeType, options, payerIsUser, routerMustCustody);
     } else {
       throw new Error('Invalid route type');
     }
   }
-  var trade = MixedRouteTrade.createUncheckedTrade({
+  var trade = routerSdk.MixedRouteTrade.createUncheckedTrade({
     route: route,
     inputAmount: inputAmount,
     outputAmount: outputAmount,
@@ -389,7 +393,7 @@ function addMixedSwap(planner, swap, tradeType, options, payerIsUser, routerMust
   var amountOut = trade.minimumAmountOut(options.slippageTolerance, outputAmount).quotient.toString();
   // logic from
   // https://github.com/Uniswap/router-sdk/blob/d8eed164e6c79519983844ca8b6a3fc24ebcb8f8/src/swapRouter.ts#L276
-  var sections = partitionMixedRouteByProtocol(route);
+  var sections = routerSdk.partitionMixedRouteByProtocol(route);
   var isLastSectionInRoute = function isLastSectionInRoute(i) {
     return i === sections.length - 1;
   };
@@ -398,18 +402,18 @@ function addMixedSwap(planner, swap, tradeType, options, payerIsUser, routerMust
   for (var i = 0; i < sections.length; i++) {
     var section = sections[i];
     /// Now, we get output of this section
-    outputToken = getOutputOfPools(section, inputToken);
-    var newRouteOriginal = new MixedRouteSDK([].concat(section), section[0].token0.equals(inputToken) ? section[0].token0 : section[0].token1, outputToken);
-    var newRoute = new MixedRoute(newRouteOriginal);
+    outputToken = routerSdk.getOutputOfPools(section, inputToken);
+    var newRouteOriginal = new routerSdk.MixedRouteSDK([].concat(section), section[0].token0.equals(inputToken) ? section[0].token0 : section[0].token1, outputToken);
+    var newRoute = new routerSdk.MixedRoute(newRouteOriginal);
     /// Previous output is now input
     inputToken = outputToken;
     var mixedRouteIsAllV3 = function mixedRouteIsAllV3(route) {
       return route.pools.every(function (pool) {
-        return pool instanceof Pool;
+        return pool instanceof v3Sdk.Pool;
       });
     };
     if (mixedRouteIsAllV3(newRoute)) {
-      var path = encodeMixedRouteToPath(newRoute);
+      var path = routerSdk.encodeMixedRouteToPath(newRoute);
       planner.addCommand(CommandType.V3_SWAP_EXACT_IN, [
       // if not last section: send tokens directly to the first v2 pair of the next section
       // note: because of the partitioning function we can be sure that the next section is v2
@@ -430,11 +434,11 @@ var SIGNATURE_LENGTH = 65;
 var EIP_2098_SIGNATURE_LENGTH = 64;
 function encodePermit(planner, permit2) {
   var signature = permit2.signature;
-  var length = ethers.utils.arrayify(permit2.signature).length;
+  var length = ethers.ethers.utils.arrayify(permit2.signature).length;
   // signature data provided for EIP-1271 may have length different from ECDSA signature
   if (length === SIGNATURE_LENGTH || length === EIP_2098_SIGNATURE_LENGTH) {
     // sanitizes signature to cover edge cases of malformed EIP-2098 sigs and v used as recovery id
-    signature = ethers.utils.joinSignature(ethers.utils.splitSignature(permit2.signature));
+    signature = ethers.ethers.utils.joinSignature(ethers.ethers.utils.splitSignature(permit2.signature));
   }
   planner.addCommand(CommandType.PERMIT2_PERMIT, [permit2, signature]);
 }
@@ -445,9 +449,9 @@ function encodePermit(planner, permit2) {
 // Transfer: A Permit2 TransferFrom of tokens from a user to either the router or another address
 function encodeInputTokenOptions(planner, options) {
   // first ensure that all tokens provided for encoding are the same
-  if (!!options.approval && !!options.permit2Permit) !(options.approval.token === options.permit2Permit.details.token) ? process.env.NODE_ENV !== "production" ? invariant(false, "inconsistent token") : invariant(false) : void 0;
-  if (!!options.approval && !!options.permit2TransferFrom) !(options.approval.token === options.permit2TransferFrom.token) ? process.env.NODE_ENV !== "production" ? invariant(false, "inconsistent token") : invariant(false) : void 0;
-  if (!!options.permit2TransferFrom && !!options.permit2Permit) !(options.permit2TransferFrom.token === options.permit2Permit.details.token) ? process.env.NODE_ENV !== "production" ? invariant(false, "inconsistent token") : invariant(false) : void 0;
+  if (!!options.approval && !!options.permit2Permit) !(options.approval.token === options.permit2Permit.details.token) ?  invariant(false, "inconsistent token")  : void 0;
+  if (!!options.approval && !!options.permit2TransferFrom) !(options.approval.token === options.permit2TransferFrom.token) ?  invariant(false, "inconsistent token")  : void 0;
+  if (!!options.permit2TransferFrom && !!options.permit2Permit) !(options.permit2TransferFrom.token === options.permit2Permit.details.token) ?  invariant(false, "inconsistent token")  : void 0;
   // if an options.approval is required, add it
   if (!!options.approval) {
     planner.addCommand(CommandType.APPROVE_ERC20, [options.approval.token, mapApprovalProtocol(options.approval.protocol)]);
@@ -489,8 +493,8 @@ var SwapRouter = /*#__PURE__*/function () {
     var allowRevert = nftTrades.length == 1 && nftTrades[0].orders.length == 1 ? false : true;
     var planner = new RoutePlanner();
     // track value flow to require the right amount of native value
-    var currentNativeValueInRouter = BigNumber.from(0);
-    var transactionValue = BigNumber.from(0);
+    var currentNativeValueInRouter = ethers.BigNumber.from(0);
+    var transactionValue = ethers.BigNumber.from(0);
     // tracks the input tokens (and ETH) used to buy NFTs to allow us to sweep
     var nftInputTokens = new Set();
     for (var _iterator = _createForOfIteratorHelperLoose(trades), _step; !(_step = _iterator()).done;) {
@@ -498,13 +502,13 @@ var SwapRouter = /*#__PURE__*/function () {
       /**
        * is NFTTrade
        */
-      if (trade.tradeType == RouterTradeType.NFTTrade) {
+      if (trade.tradeType == exports.RouterTradeType.NFTTrade) {
         var nftTrade = trade;
         nftTrade.encode(planner, {
           allowRevert: allowRevert
         });
         var tradePrice = nftTrade.getTotalPrice();
-        if (nftTrade.market == Market.Seaport) {
+        if (nftTrade.market == exports.Market.Seaport) {
           var seaportTrade = nftTrade;
           var seaportInputTokens = seaportTrade.getInputTokens();
           seaportInputTokens.forEach(function (inputToken) {
@@ -516,28 +520,28 @@ var SwapRouter = /*#__PURE__*/function () {
         // send enough native value to contract for NFT purchase
         if (currentNativeValueInRouter.lt(tradePrice)) {
           transactionValue = transactionValue.add(tradePrice.sub(currentNativeValueInRouter));
-          currentNativeValueInRouter = BigNumber.from(0);
+          currentNativeValueInRouter = ethers.BigNumber.from(0);
         } else {
           currentNativeValueInRouter = currentNativeValueInRouter.sub(tradePrice);
         }
         /**
          * is UniswapTrade
          */
-      } else if (trade.tradeType == RouterTradeType.UniswapTrade) {
+      } else if (trade.tradeType == exports.RouterTradeType.UniswapTrade) {
         var uniswapTrade = trade;
         var inputIsNative = uniswapTrade.trade.inputAmount.currency.isNative;
         var outputIsNative = uniswapTrade.trade.outputAmount.currency.isNative;
         var swapOptions = uniswapTrade.options;
-        !!(inputIsNative && !!swapOptions.inputTokenPermit) ? process.env.NODE_ENV !== "production" ? invariant(false, 'NATIVE_INPUT_PERMIT') : invariant(false) : void 0;
+        !!(inputIsNative && !!swapOptions.inputTokenPermit) ?  invariant(false, 'NATIVE_INPUT_PERMIT')  : void 0;
         if (!!swapOptions.inputTokenPermit) {
           encodePermit(planner, swapOptions.inputTokenPermit);
         }
         if (inputIsNative) {
-          transactionValue = transactionValue.add(BigNumber.from(uniswapTrade.trade.maximumAmountIn(swapOptions.slippageTolerance).quotient.toString()));
+          transactionValue = transactionValue.add(ethers.BigNumber.from(uniswapTrade.trade.maximumAmountIn(swapOptions.slippageTolerance).quotient.toString()));
         }
         // track amount of native currency in the router
         if (outputIsNative && swapOptions.recipient == ROUTER_AS_RECIPIENT) {
-          currentNativeValueInRouter = currentNativeValueInRouter.add(BigNumber.from(uniswapTrade.trade.minimumAmountOut(swapOptions.slippageTolerance).quotient.toString()));
+          currentNativeValueInRouter = currentNativeValueInRouter.add(ethers.BigNumber.from(uniswapTrade.trade.minimumAmountOut(swapOptions.slippageTolerance).quotient.toString()));
         }
         uniswapTrade.encode(planner, {
           allowRevert: false
@@ -545,7 +549,7 @@ var SwapRouter = /*#__PURE__*/function () {
         /**
          * is UnwrapWETH
          */
-      } else if (trade.tradeType == RouterTradeType.UnwrapWETH) {
+      } else if (trade.tradeType == exports.RouterTradeType.UnwrapWETH) {
         var UnwrapWETH = trade;
         trade.encode(planner, {
           allowRevert: false
@@ -577,7 +581,7 @@ var SwapRouter = /*#__PURE__*/function () {
       config = {};
     }
     var planner = new RoutePlanner();
-    var totalPrice = BigNumber.from(0);
+    var totalPrice = ethers.BigNumber.from(0);
     var allowRevert = trades.length == 1 && trades[0].orders.length == 1 ? false : true;
     for (var _iterator2 = _createForOfIteratorHelperLoose(trades), _step2; !(_step2 = _iterator2()).done;) {
       var trade = _step2.value;
@@ -600,16 +604,16 @@ var SwapRouter = /*#__PURE__*/function () {
     var planner = new RoutePlanner();
     var trade = new UniswapTrade(trades, options);
     var inputCurrency = trade.trade.inputAmount.currency;
-    !!(inputCurrency.isNative && !!options.inputTokenPermit) ? process.env.NODE_ENV !== "production" ? invariant(false, 'NATIVE_INPUT_PERMIT') : invariant(false) : void 0;
+    !!(inputCurrency.isNative && !!options.inputTokenPermit) ?  invariant(false, 'NATIVE_INPUT_PERMIT')  : void 0;
     if (options.inputTokenPermit) {
       encodePermit(planner, options.inputTokenPermit);
     }
-    var nativeCurrencyValue = inputCurrency.isNative ? BigNumber.from(trade.trade.maximumAmountIn(options.slippageTolerance).quotient.toString()) : BigNumber.from(0);
+    var nativeCurrencyValue = inputCurrency.isNative ? ethers.BigNumber.from(trade.trade.maximumAmountIn(options.slippageTolerance).quotient.toString()) : ethers.BigNumber.from(0);
     trade.encode(planner, {
       allowRevert: false
     });
     return SwapRouter.encodePlan(planner, nativeCurrencyValue, {
-      deadline: options.deadlineOrPreviousBlockhash ? BigNumber.from(options.deadlineOrPreviousBlockhash) : undefined
+      deadline: options.deadlineOrPreviousBlockhash ? ethers.BigNumber.from(options.deadlineOrPreviousBlockhash) : undefined
     });
   }
   /**
@@ -634,12 +638,12 @@ var SwapRouter = /*#__PURE__*/function () {
   };
   return SwapRouter;
 }();
-SwapRouter.INTERFACE = /*#__PURE__*/new Interface(abi$7);
+SwapRouter.INTERFACE = /*#__PURE__*/new abi$7.Interface(UniversalRouter_json.abi);
 
 var CryptopunkTrade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(CryptopunkTrade, _NFTTrade);
   function CryptopunkTrade(orders) {
-    return _NFTTrade.call(this, Market.Cryptopunks, orders) || this;
+    return _NFTTrade.call(this, exports.Market.Cryptopunks, orders) || this;
   }
   var _proto = CryptopunkTrade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -655,13 +659,13 @@ var CryptopunkTrade = /*#__PURE__*/function (_NFTTrade) {
       buyItems.push({
         tokenAddress: CryptopunkTrade.CRYPTOPUNK_ADDRESS,
         tokenId: item.tokenId,
-        tokenType: TokenType.Cryptopunk
+        tokenType: exports.TokenType.Cryptopunk
       });
     }
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator3 = _createForOfIteratorHelperLoose(this.orders), _step3; !(_step3 = _iterator3()).done;) {
       var item = _step3.value;
       total = total.add(item.value);
@@ -2297,7 +2301,7 @@ var abi = [
 var FoundationTrade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(FoundationTrade, _NFTTrade);
   function FoundationTrade(orders) {
-    return _NFTTrade.call(this, Market.Foundation, orders) || this;
+    return _NFTTrade.call(this, exports.Market.Foundation, orders) || this;
   }
   var _proto = FoundationTrade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -2314,13 +2318,13 @@ var FoundationTrade = /*#__PURE__*/function (_NFTTrade) {
       buyItems.push({
         tokenAddress: item.tokenAddress,
         tokenId: item.tokenId,
-        tokenType: TokenType.ERC721
+        tokenType: exports.TokenType.ERC721
       });
     }
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator3 = _createForOfIteratorHelperLoose(this.orders), _step3; !(_step3 = _iterator3()).done;) {
       var item = _step3.value;
       total = total.add(item.price);
@@ -2329,7 +2333,7 @@ var FoundationTrade = /*#__PURE__*/function (_NFTTrade) {
   };
   return FoundationTrade;
 }(NFTTrade);
-FoundationTrade.INTERFACE = /*#__PURE__*/new Interface(abi);
+FoundationTrade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi);
 
 var abi$1 = [
 	{
@@ -4334,7 +4338,7 @@ var abi$1 = [
 var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(LooksRareV2Trade, _NFTTrade);
   function LooksRareV2Trade(orders) {
-    return _NFTTrade.call(this, Market.LooksRareV2, orders) || this;
+    return _NFTTrade.call(this, exports.Market.LooksRareV2, orders) || this;
   }
   var _proto = LooksRareV2Trade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -4357,7 +4361,7 @@ var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
     for (var _iterator = _createForOfIteratorHelperLoose(this.orders), _step; !(_step = _iterator()).done;) {
       var item = _step.value;
       var tokenAddress = item.apiOrder.collection;
-      var tokenType = item.apiOrder.collectionType == LooksRareV2Trade.ERC721_ORDER ? TokenType.ERC721 : TokenType.ERC1155;
+      var tokenType = item.apiOrder.collectionType == LooksRareV2Trade.ERC721_ORDER ? exports.TokenType.ERC721 : exports.TokenType.ERC1155;
       for (var _iterator2 = _createForOfIteratorHelperLoose(item.apiOrder.itemIds), _step2; !(_step2 = _iterator2()).done;) {
         var tokenId = _step2.value;
         buyItems.push({
@@ -4370,7 +4374,7 @@ var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator3 = _createForOfIteratorHelperLoose(this.orders), _step3; !(_step3 = _iterator3()).done;) {
       var item = _step3.value;
       total = total.add(item.apiOrder.price);
@@ -4381,7 +4385,7 @@ var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
     var takerBids = [];
     var makerOrders = [];
     var makerSignatures = [];
-    var totalValue = BigNumber.from(0);
+    var totalValue = ethers.BigNumber.from(0);
     var merkleTrees = [];
     orders.forEach(function (order) {
       var _order$apiOrder$merkl, _order$apiOrder$merkl2;
@@ -4391,7 +4395,7 @@ var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
         recipient: order.taker,
         additionalParameters: '0x'
       });
-      totalValue = totalValue.add(BigNumber.from(order.apiOrder.price));
+      totalValue = totalValue.add(ethers.BigNumber.from(order.apiOrder.price));
       merkleTrees.push({
         root: (_order$apiOrder$merkl = order.apiOrder.merkleRoot) != null ? _order$apiOrder$merkl : '0x0000000000000000000000000000000000000000000000000000000000000000',
         proof: (_order$apiOrder$merkl2 = order.apiOrder.merkleProof) != null ? _order$apiOrder$merkl2 : []
@@ -4407,7 +4411,7 @@ var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
   };
   return LooksRareV2Trade;
 }(NFTTrade);
-LooksRareV2Trade.INTERFACE = /*#__PURE__*/new Interface(abi$1);
+LooksRareV2Trade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi$1);
 LooksRareV2Trade.ERC721_ORDER = 0;
 
 var abi$2 = [
@@ -4671,7 +4675,7 @@ var abi$2 = [
 var NFT20Trade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(NFT20Trade, _NFTTrade);
   function NFT20Trade(orders) {
-    return _NFTTrade.call(this, Market.NFT20, orders) || this;
+    return _NFTTrade.call(this, exports.Market.NFT20, orders) || this;
   }
   var _proto = NFT20Trade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -4690,14 +4694,14 @@ var NFT20Trade = /*#__PURE__*/function (_NFTTrade) {
         buyItems.push({
           tokenAddress: pool.tokenAddress,
           tokenId: tokenId,
-          tokenType: TokenType.ERC721
+          tokenType: exports.TokenType.ERC721
         });
       }
     }
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator4 = _createForOfIteratorHelperLoose(this.orders), _step4; !(_step4 = _iterator4()).done;) {
       var item = _step4.value;
       total = total.add(item.value);
@@ -4706,7 +4710,7 @@ var NFT20Trade = /*#__PURE__*/function (_NFTTrade) {
   };
   return NFT20Trade;
 }(NFTTrade);
-NFT20Trade.INTERFACE = /*#__PURE__*/new Interface(abi$2);
+NFT20Trade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi$2);
 
 var abi$3 = [
 	{
@@ -5332,7 +5336,7 @@ var abi$3 = [
 var NFTXTrade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(NFTXTrade, _NFTTrade);
   function NFTXTrade(orders) {
-    return _NFTTrade.call(this, Market.NFTX, orders) || this;
+    return _NFTTrade.call(this, exports.Market.NFTX, orders) || this;
   }
   var _proto = NFTXTrade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -5351,14 +5355,14 @@ var NFTXTrade = /*#__PURE__*/function (_NFTTrade) {
         buyItems.push({
           tokenAddress: order.tokenAddress,
           tokenId: tokenId,
-          tokenType: TokenType.ERC721
+          tokenType: exports.TokenType.ERC721
         });
       }
     }
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator4 = _createForOfIteratorHelperLoose(this.orders), _step4; !(_step4 = _iterator4()).done;) {
       var item = _step4.value;
       total = total.add(item.value);
@@ -5367,7 +5371,7 @@ var NFTXTrade = /*#__PURE__*/function (_NFTTrade) {
   };
   return NFTXTrade;
 }(NFTTrade);
-NFTXTrade.INTERFACE = /*#__PURE__*/new Interface(abi$3);
+NFTXTrade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi$3);
 
 var abi$4 = [
 	{
@@ -7999,7 +8003,7 @@ var abi$4 = [
 var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(SeaportTrade, _NFTTrade);
   function SeaportTrade(orders) {
-    return _NFTTrade.call(this, Market.Seaport, orders) || this;
+    return _NFTTrade.call(this, exports.Market.Seaport, orders) || this;
   }
   var _proto = SeaportTrade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -8055,7 +8059,7 @@ var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
           buyItems.push({
             tokenAddress: offer.token,
             tokenId: offer.identifierOrCriteria,
-            tokenType: TokenType.ERC721
+            tokenType: exports.TokenType.ERC721
           });
         }
       }
@@ -8081,7 +8085,7 @@ var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
     if (token === void 0) {
       token = ETH_ADDRESS;
     }
-    var totalOrderPrice = BigNumber.from(0);
+    var totalOrderPrice = ethers.BigNumber.from(0);
     for (var _iterator10 = _createForOfIteratorHelperLoose(order.items), _step10; !(_step10 = _iterator10()).done;) {
       var item = _step10.value;
       totalOrderPrice = totalOrderPrice.add(this.calculateValue(item.parameters.consideration, token));
@@ -8092,7 +8096,7 @@ var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
     if (token === void 0) {
       token = ETH_ADDRESS;
     }
-    var totalPrice = BigNumber.from(0);
+    var totalPrice = ethers.BigNumber.from(0);
     for (var _iterator11 = _createForOfIteratorHelperLoose(this.orders), _step11; !(_step11 = _iterator11()).done;) {
       var order = _step11.value;
       for (var _iterator12 = _createForOfIteratorHelperLoose(order.items), _step12; !(_step12 = _iterator12()).done;) {
@@ -8150,8 +8154,8 @@ var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
   _proto.getAdvancedOrderParams = function getAdvancedOrderParams(data) {
     var advancedOrder = {
       parameters: data.parameters,
-      numerator: BigNumber.from('1'),
-      denominator: BigNumber.from('1'),
+      numerator: ethers.BigNumber.from('1'),
+      denominator: ethers.BigNumber.from('1'),
       signature: data.signature,
       extraData: '0x00'
     };
@@ -8162,11 +8166,11 @@ var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
   _proto.calculateValue = function calculateValue(considerations, token) {
     return considerations.reduce(function (amt, consideration) {
       return consideration.token.toLowerCase() == token.toLowerCase() ? amt.add(consideration.startAmount) : amt;
-    }, BigNumber.from(0));
+    }, ethers.BigNumber.from(0));
   };
   return SeaportTrade;
 }(NFTTrade);
-SeaportTrade.INTERFACE = /*#__PURE__*/new Interface(abi$4);
+SeaportTrade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi$4);
 SeaportTrade.OPENSEA_CONDUIT_KEY = '0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000';
 
 var abi$5 = [
@@ -9285,7 +9289,7 @@ var abi$5 = [
 var SudoswapTrade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(SudoswapTrade, _NFTTrade);
   function SudoswapTrade(orders) {
-    return _NFTTrade.call(this, Market.Sudoswap, orders) || this;
+    return _NFTTrade.call(this, exports.Market.Sudoswap, orders) || this;
   }
   var _proto = SudoswapTrade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -9299,7 +9303,7 @@ var SudoswapTrade = /*#__PURE__*/function (_NFTTrade) {
       }), order.ethRecipient, order.nftRecipient, order.deadline]);
       var value = order.swaps.reduce(function (prevVal, swap) {
         return prevVal.add(swap.maxCost);
-      }, BigNumber.from(0));
+      }, ethers.BigNumber.from(0));
       planner.addCommand(CommandType.SUDOSWAP, [value, calldata], config.allowRevert);
     }
   };
@@ -9314,7 +9318,7 @@ var SudoswapTrade = /*#__PURE__*/function (_NFTTrade) {
           buyItems.push({
             tokenAddress: swap.tokenAddress,
             tokenId: tokenId,
-            tokenType: TokenType.ERC721
+            tokenType: exports.TokenType.ERC721
           });
         }
       }
@@ -9322,7 +9326,7 @@ var SudoswapTrade = /*#__PURE__*/function (_NFTTrade) {
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator5 = _createForOfIteratorHelperLoose(this.orders), _step5; !(_step5 = _iterator5()).done;) {
       var order = _step5.value;
       for (var _iterator6 = _createForOfIteratorHelperLoose(order.swaps), _step6; !(_step6 = _iterator6()).done;) {
@@ -9334,7 +9338,7 @@ var SudoswapTrade = /*#__PURE__*/function (_NFTTrade) {
   };
   return SudoswapTrade;
 }(NFTTrade);
-SudoswapTrade.INTERFACE = /*#__PURE__*/new Interface(abi$5);
+SudoswapTrade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi$5);
 
 var abi$6 = [
 	{
@@ -10444,7 +10448,7 @@ var abi$6 = [
 var X2Y2Trade = /*#__PURE__*/function (_NFTTrade) {
   _inheritsLoose(X2Y2Trade, _NFTTrade);
   function X2Y2Trade(orders) {
-    return _NFTTrade.call(this, Market.X2Y2, orders) || this;
+    return _NFTTrade.call(this, exports.Market.X2Y2, orders) || this;
   }
   var _proto = X2Y2Trade.prototype;
   _proto.encode = function encode(planner, config) {
@@ -10452,9 +10456,9 @@ var X2Y2Trade = /*#__PURE__*/function (_NFTTrade) {
       var item = _step.value;
       var functionSelector = X2Y2Trade.INTERFACE.getSighash(X2Y2Trade.INTERFACE.getFunction('run'));
       var calldata = functionSelector + item.signedInput.slice(2);
-      if (item.tokenType == TokenType.ERC721) {
+      if (item.tokenType == exports.TokenType.ERC721) {
         planner.addCommand(CommandType.X2Y2_721, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId], config.allowRevert);
-      } else if (item.tokenType == TokenType.ERC1155) {
+      } else if (item.tokenType == exports.TokenType.ERC1155) {
         planner.addCommand(CommandType.X2Y2_1155, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId, item.tokenAmount], config.allowRevert);
       }
     }
@@ -10472,7 +10476,7 @@ var X2Y2Trade = /*#__PURE__*/function (_NFTTrade) {
     return buyItems;
   };
   _proto.getTotalPrice = function getTotalPrice() {
-    var total = BigNumber.from(0);
+    var total = ethers.BigNumber.from(0);
     for (var _iterator3 = _createForOfIteratorHelperLoose(this.orders), _step3; !(_step3 = _iterator3()).done;) {
       var item = _step3.value;
       total = total.add(item.price);
@@ -10481,16 +10485,16 @@ var X2Y2Trade = /*#__PURE__*/function (_NFTTrade) {
   };
   return X2Y2Trade;
 }(NFTTrade);
-X2Y2Trade.INTERFACE = /*#__PURE__*/new Interface(abi$6);
+X2Y2Trade.INTERFACE = /*#__PURE__*/new abi$7.Interface(abi$6);
 
 var UnwrapWETH = /*#__PURE__*/function () {
   function UnwrapWETH(amount, chainId, permit2) {
-    this.tradeType = RouterTradeType.UnwrapWETH;
+    this.tradeType = exports.RouterTradeType.UnwrapWETH;
     this.wethAddress = WETH_ADDRESS(chainId);
     this.amount = amount;
     if (!!permit2) {
-      !(permit2.details.token.toLowerCase() === this.wethAddress.toLowerCase()) ? process.env.NODE_ENV !== "production" ? invariant(false, "must be permitting WETH address: " + this.wethAddress) : invariant(false) : void 0;
-      !(permit2.details.amount >= amount) ? process.env.NODE_ENV !== "production" ? invariant(false, "Did not permit enough WETH for unwrapWETH transaction") : invariant(false) : void 0;
+      !(permit2.details.token.toLowerCase() === this.wethAddress.toLowerCase()) ?  invariant(false, "must be permitting WETH address: " + this.wethAddress)  : void 0;
+      !(permit2.details.amount >= amount) ?  invariant(false, "Did not permit enough WETH for unwrapWETH transaction")  : void 0;
       this.permit2Data = permit2;
     }
   }
@@ -10508,5 +10512,21 @@ var UnwrapWETH = /*#__PURE__*/function () {
   return UnwrapWETH;
 }();
 
-export { CryptopunkTrade, FoundationTrade, LooksRareV2Trade, Market, NFT20Trade, NFTTrade, NFTXTrade, PERMIT2_ADDRESS, RESOLVE_PERMIT2_ADDRESS, ROUTER_AS_RECIPIENT, RouterTradeType, SeaportTrade, SudoswapTrade, SwapRouter, TokenType, UNIVERSAL_ROUTER_ADDRESS, UniswapTrade, UnwrapWETH, WETH_ADDRESS, X2Y2Trade };
-//# sourceMappingURL=universal-router-sdk.esm.js.map
+exports.CryptopunkTrade = CryptopunkTrade;
+exports.FoundationTrade = FoundationTrade;
+exports.LooksRareV2Trade = LooksRareV2Trade;
+exports.NFT20Trade = NFT20Trade;
+exports.NFTTrade = NFTTrade;
+exports.NFTXTrade = NFTXTrade;
+exports.PERMIT2_ADDRESS = PERMIT2_ADDRESS;
+exports.RESOLVE_PERMIT2_ADDRESS = RESOLVE_PERMIT2_ADDRESS;
+exports.ROUTER_AS_RECIPIENT = ROUTER_AS_RECIPIENT;
+exports.SeaportTrade = SeaportTrade;
+exports.SudoswapTrade = SudoswapTrade;
+exports.SwapRouter = SwapRouter;
+exports.UNIVERSAL_ROUTER_ADDRESS = UNIVERSAL_ROUTER_ADDRESS;
+exports.UniswapTrade = UniswapTrade;
+exports.UnwrapWETH = UnwrapWETH;
+exports.WETH_ADDRESS = WETH_ADDRESS;
+exports.X2Y2Trade = X2Y2Trade;
+//# sourceMappingURL=uniswap-universal-router-sdk.cjs.development.js.map
