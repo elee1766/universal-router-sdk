@@ -1,6 +1,6 @@
 {
   "name": "@gfxlabs/uniswap-universal-router-sdk",
-  "version": "1.5.4-2",
+  "version": "1.5.4-3",
   "description": "sdk for integrating with the Universal Router contracts",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,6 +19,7 @@
     "test:forge": "forge test",
     "install:ur": "cd node_modules/@uniswap/universal-router && forge install",
     "build": "tsdx build",
+    "prepublish": "yarn build",
     "prettier:fix": "prettier --write '**/*.ts' && prettier --write '**/*.json'",
     "forge:fix": "forge fmt",
     "lint:fix": "yarn prettier:fix && yarn forge:fix",
