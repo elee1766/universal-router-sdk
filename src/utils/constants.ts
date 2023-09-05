@@ -90,7 +90,8 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //moonbeam
   [1284]: {
-    router: '',
+    router: '0x1F56F4e1648e96633c7FE79002036E967403CDfF',
+    permit2: '0xe96e30e92e01dc8a880f701b2d2160f93da18df7',
     weth: '0x30d2a9f5fdf90ace8c17952cbb4ee48a55d916a7',
     creationBlock: 3340490,
   },
