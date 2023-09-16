@@ -101,7 +101,14 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     weth: '0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000',
     creationBlock: 969351,
     permit2: '0xF80c91442D3EF66632958C0d395667075FC82fB0',
-  }
+  },
+  //zksync
+  [324]: {
+    router: '0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06',
+    weth: '0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91',
+    creationBlock: 12640979,
+    permit2: '0x0000000000225e31d15943971f47ad3022f714fa',
+  },
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
