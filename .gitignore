@@ -5,3 +5,4 @@ docs
 cache
 out
 .env
+dist
