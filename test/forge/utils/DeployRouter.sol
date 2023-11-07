@@ -16,6 +16,8 @@ contract DeployRouter is Test {
     bytes32 public constant PAIR_INIT_CODE_HASH = 0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f;
     bytes32 public constant POOL_INIT_CODE_HASH = 0xe34f199b19b2b4f47f68442619d555527d244f78a3297ea89325f843f87b8b54;
     address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+    address public constant STETH = 0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84;
+    address public constant WSTETH = 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0;
     address public constant SEAPORT_V1_5 = 0x00000000000000ADc04C56Bf30aC9d3c0aAF14dC;
     address public constant SEAPORT_V1_4 = 0x00000000000001ad428e4906aE43D8F9852d0dD6;
     address public constant NFTX_ZAP = 0x941A6d105802CCCaa06DE58a13a6F49ebDCD481C;
@@ -31,6 +33,7 @@ contract DeployRouter is Test {
     address public constant ELEMENT_MARKET = 0x20F780A973856B93f63670377900C1d2a50a77c4;
 
     address internal constant RECIPIENT = 0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa;
+    address internal constant FEE_RECIPIENT = 0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB;
     address internal constant MAINNET_PERMIT2 = 0x000000000022D473030F116dDEE9F6B43aC78BA3;
 
     address internal constant FORGE_ROUTER_ADDRESS = 0xE808C1cfeebb6cb36B537B82FA7c9EEf31415a05;
@@ -47,6 +50,8 @@ contract DeployRouter is Test {
             RouterParameters({
                 permit2: _permit2,
                 weth9: WETH9,
+                steth: STETH,
+                wsteth: WSTETH,
                 seaportV1_5: SEAPORT_V1_5,
                 seaportV1_4: SEAPORT_V1_4,
                 openseaConduit: OPENSEA_CONDUIT,
