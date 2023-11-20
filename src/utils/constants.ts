@@ -4,7 +4,7 @@ type ChainConfig = {
   router: string
   creationBlock: number
   weth: string
-  permit2?:string
+  permit2?: string
   steth: string
   wsteth: string
 }
@@ -152,6 +152,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //zksync
   [324]: {
+    router: '0x83702C6356A1028A900F83d446D189a31646a16b',
+    weth: '0x60E1773636CF5E4A227d9AC24F20fEca034ee25A',
+    creationBlock: 2705060,
+    permit2: '0xb81363578d377F8DA3902e9e705FD60198a9cEc2',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
+  //filecoin
+  [314]: {
     router: '0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06',
     weth: '0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91',
     creationBlock: 12640979,
