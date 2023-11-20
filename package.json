@@ -71,5 +71,6 @@
   "bugs": {
     "url": "https://github.com/Uniswap/universal-router-sdk/issues"
   },
-  "homepage": "https://github.com/Uniswap/universal-router-sdk#readme"
+  "homepage": "https://github.com/Uniswap/universal-router-sdk#readme",
+  "packageManager": "yarn@4.0.2"
 }
