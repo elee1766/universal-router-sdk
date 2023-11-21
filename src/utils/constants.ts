@@ -159,6 +159,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //rootstock
+  [30]: {
+    router: '0xA3C5307E293281956EefD576b1EbCE48051034E1',
+    weth: '0x967f8799af07df1534d48a95a5c9febe92c53ae0',
+    creationBlock: 5830624,
+    permit2: '0xDFC23b8CcDf44f548BE29Bc21111504c1d2E0daB',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //filecoin
   [314]: {
     router: '0x83702C6356A1028A900F83d446D189a31646a16b',
