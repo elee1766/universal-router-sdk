@@ -162,9 +162,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   //rootstock
   [30]: {
     router: '0x244f68e77357f86a8522323eBF80b5FC2F814d3E',
-    weth: '0x967f8799af07df1534d48a95a5c9febe92c53ae0',
+    weth: '0x967F8799aF07dF1534d48A95a5C9FEBE92c53AE0',
     creationBlock: 5830624,
-    permit2: '0xfcF5986450e4a014FFe7ad4aE24921b589D039b5',
+    permit2: '0xFcf5986450E4A014fFE7ad4Ae24921B589D039b5',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
