@@ -161,10 +161,10 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //rootstock
   [30]: {
-    router: '0xBA9567810E05A0B34eFfF7186bC752be931B9E5C',
+    router: '0x244f68e77357f86a8522323eBF80b5FC2F814d3E',
     weth: '0x967f8799af07df1534d48a95a5c9febe92c53ae0',
     creationBlock: 5830624,
-    permit2: '0xDFC23b8CcDf44f548BE29Bc21111504c1d2E0daB',
+    permit2: '0xfcF5986450e4a014FFe7ad4aE24921b589D039b5',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
