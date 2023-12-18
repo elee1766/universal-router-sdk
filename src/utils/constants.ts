@@ -159,6 +159,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //polygon zkevm
+  [1101]: {
+    router: '0x32454e81d065FAA95Ec0d0Ab6Fe326599Af30fd7',
+    weth: '0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9',
+    creationBlock: 8467040,
+    permit2: '0xCEc9e219281B78E1946b6b894f75ae89Bc10FEb6',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //scroll
   [534352]: {
     router: '0xfc30937f5cDe93Df8d48aCAF7e6f5D8D8A31F636',
