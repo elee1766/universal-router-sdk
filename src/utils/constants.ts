@@ -177,6 +177,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //manta
+  [169]: {
+    router: '0x42Bff1f6b647462fcD8c28a488Be9C9988830ef6',
+    weth: '0x0Dc808adcE2099A9F62AA87D9670745AbA741746',
+    creationBlock: 1199217,
+    permit2: '0x83986Ff655A54ee061F6B7F476B92f4Fed111B93',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //rootstock
   [30]: {
     router: '0x244f68e77357f86a8522323eBF80b5FC2F814d3E',
