@@ -161,10 +161,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //blast
   [81457]: {
-    router: '0xe463635f6e73C1E595554C3ae216472D0fb929a9',
+    router: '0x643770E279d5D0733F21d6DC03A8efbABf3255B4',
     weth: '0x4300000000000000000000000000000000000004',
-    creationBlock: 401447,
-    permit2: '0x4966DEEc054245866f2cf452ec20F72da9AfC7b5',
+    creationBlock: 1116444,
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
