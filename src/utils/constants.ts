@@ -178,7 +178,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //scroll
   [534352]: {
-    router: '0xfc30937f5cDe93Df8d48aCAF7e6f5D8D8A31F636',
+    router: '0x595E7160858b1AdA94Bda790D8699C85e595117E',
     weth: '0x5300000000000000000000000000000000000004',
     creationBlock: 1380,
     permit2: '0xD75ca8A1F18DB1f48e500269111071308cFe718A',
