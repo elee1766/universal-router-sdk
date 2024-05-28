@@ -159,6 +159,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //taiko
+  [167000]: {
+    router: '0x346239972d1fa486FC4a521031BC81bFB7D6e8a4',
+    weth: '0xA51894664A773981C6C112C43ce576f315d5b1B6',
+    creationBlock: 2382,
+    permit2: '0x1b35fbA9357fD9bda7ed0429C8BbAbe1e8CC88fc',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //mantle
   [5000]: {
     router: '0x447B8E40B0CdA8e55F405C86bC635D02d0540aB8',

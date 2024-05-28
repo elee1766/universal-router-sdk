@@ -2368,10 +2368,10 @@
     "@uniswap/v2-sdk" "^3.2.0"
     "@uniswap/v3-sdk" "^3.10.0"
 
-"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.7", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-19":
-  version "4.0.9-19"
-  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-19.tgz#9085500163fe98299f2eee8217669cbee77d6bfe"
-  integrity sha512-uo+AZpb2sGosR0mlJkRFVHerZ6ra+SmbPDhH/LHpT0fUE2eAVwmKJCJd+P6X3KHZ83Rfc8ESgtPLZaBQtThh4g==
+"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.7", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-20":
+  version "4.0.9-20"
+  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-20.tgz#2e6a705b9d474311486980ff4158b27dc5c39d93"
+  integrity sha512-LpVDn5R/LI4hqNvjBhtgrHSN/dX6iw2DO57SYTmssm1ZNuzYWt1QptHg/gQ6rLjs7XSJoDTL+IINZWerG8y0WQ==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
