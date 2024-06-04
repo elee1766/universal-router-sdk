@@ -168,6 +168,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  // sei
+  [1329]: {
+    router: '0xa683c66045ad16abb1bCE5ad46A64d95f9A25785',
+    weth: '0xE30feDd158A2e3b13e9badaeABaFc5516e95e8C7',
+    creationBlock: 79447543,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //mantle
   [5000]: {
     router: '0x447B8E40B0CdA8e55F405C86bC635D02d0540aB8',
