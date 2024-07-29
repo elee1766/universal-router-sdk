@@ -159,6 +159,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //zklink
+  [810180]: {
+    router: '0x2274bDE50218DDB955e7f60e4f2344e3Bff9D193',
+    weth: '0x8280a4e7D5B3B658ec4580d3Bc30f5e50454F169',
+    creationBlock: 4404950,
+    permit2: '0xc9fd50fc93f2a82d07d2b8c09ebe904317d5f7f6',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //taiko
   [167000]: {
     router: '0x346239972d1fa486FC4a521031BC81bFB7D6e8a4',
