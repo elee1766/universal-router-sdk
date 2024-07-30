@@ -1,6 +1,6 @@
 {
   "name": "@gfxlabs/uniswap-universal-router-sdk",
-  "version": "2.0.1-27",
+  "version": "2.0.1-28",
   "description": "sdk for integrating with the Universal Router contracts",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -51,12 +51,12 @@
     "typescript": "^4.3.3"
   },
   "resolutions": {
-    "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core@4.0.9-22"
+    "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core@4.0.9-23"
   },
   "dependencies": {
     "@uniswap/permit2-sdk": "^1.2.0",
     "@uniswap/router-sdk": "^1.6.0",
-    "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core@4.0.9-22",
+    "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core@4.0.9-23",
     "@uniswap/universal-router": "1.5.1",
     "@uniswap/v2-sdk": "^3.2.0",
     "@uniswap/v3-sdk": "^3.10.0",
