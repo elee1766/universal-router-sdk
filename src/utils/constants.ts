@@ -159,6 +159,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //lisk
+  [1135]: {
+    router: '0x447B8E40B0CdA8e55F405C86bC635D02d0540aB8',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 578844,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //zklink
   [810180]: {
     router: '0x2274bDE50218DDB955e7f60e4f2344e3Bff9D193',
