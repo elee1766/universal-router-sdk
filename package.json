@@ -1,6 +1,6 @@
 {
   "name": "@gfxlabs/uniswap-universal-router-sdk",
-  "version": "2.0.1-29",
+  "version": "2.0.1-30",
   "description": "sdk for integrating with the Universal Router contracts",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
