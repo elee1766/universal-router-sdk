@@ -14,7 +14,7 @@ export const NOT_SUPPORTED_ON_CHAIN = '0x000000000000000000000000000000000000000
 const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   // mainnet
   [1]: {
-    router: '0x3F6328669a86bef431Dc6F9201A5B90F7975a023',
+    router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
     weth: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
     steth: '0xae7ab96520de3a18e5e111b5eaab095312d7fe84',
     wsteth: '0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0',
@@ -22,7 +22,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // goerli
   [5]: {
-    router: '0x3F6328669a86bef431Dc6F9201A5B90F7975a023',
+    router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
     weth: '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6',
     steth: '0x1643E812aE58766192Cf7D2Cf9567dF2C37e9B7F',
     wsteth: '0x6320cD32aA674d2898A68ec82e869385Fc5f7E2f',
@@ -38,7 +38,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // polygon
   [137]: {
-    router: '0x643770E279d5D0733F21d6DC03A8efbABf3255B4',
+    router: '0xec7BE89e9d109e7e3Fec59c222CF297125FEFda2',
     weth: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
@@ -54,7 +54,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //optimism
   [10]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0xCb1355ff08Ab38bBCE60111F1bb2B784bE25D7e8',
     weth: '0x4200000000000000000000000000000000000006',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
@@ -70,7 +70,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // arbitrum
   [42161]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0x5E325eDA8064b456f4781070C0738d849c824258',
     weth: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
@@ -86,7 +86,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // celo
   [42220]: {
-    router: '0x88a3ED7F21A3fCF6adb86b6F878C5B7a02D20e9b',
+    router: '0x643770e279d5d0733f21d6dc03a8efbabf3255b4',
     weth: NOT_SUPPORTED_ON_CHAIN,
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
@@ -102,7 +102,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // binance smart chain
   [56]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0x4Dae2f939ACf50408e13d58534Ff8c2776d45265',
     weth: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
@@ -110,7 +110,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // avalanche
   [43114]: {
-    router: '0x82635AF6146972cD6601161c4472ffe97237D292',
+    router: '0x4Dae2f939ACf50408e13d58534Ff8c2776d45265',
     weth: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
@@ -126,7 +126,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // base mainnet
   [8453]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
     weth: '0x4200000000000000000000000000000000000006',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
