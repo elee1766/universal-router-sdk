@@ -159,6 +159,24 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //xlayer
+  [196]: {
+    router: '0x1b35fbA9357fD9bda7ed0429C8BbAbe1e8CC88fc',
+    weth: '0xe538905cf8410324e03a5a23c1c177a474d59b2b',
+    creationBlock: 4346684,
+    permit2: '0x000000000022D473030F116dDEE9F6B43aC78BA3',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
+  //gnosis
+  [100]: {
+    router: '0x75FC67473A91335B5b8F8821277262a13B38c9b3',
+    weth: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
+    creationBlock: 35719251,
+    permit2: '0x000000000022D473030F116dDEE9F6B43aC78BA3',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //bob
   [60808]: {
     router: '0x346239972d1fa486FC4a521031BC81bFB7D6e8a4',
