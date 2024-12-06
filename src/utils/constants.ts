@@ -302,6 +302,24 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //corn
+  [21000000]: {
+    router: '0x9db70E29712Cc8Af10c2B597BaDA6784544FF407',
+    weth: '0xda5dDd7270381A7C2717aD10D1c0ecB19e3CDFb2',
+    creationBlock: 10939,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
+  //metal
+  [1750]: {
+    router: '0x346239972d1fa486FC4a521031BC81bFB7D6e8a4',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 10815185,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
