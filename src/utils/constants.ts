@@ -329,6 +329,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //hemi
+  [4311]: {
+    router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 964033,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
