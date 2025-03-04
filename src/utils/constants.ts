@@ -367,6 +367,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //saga
   [5464]: {
+    router: '0xa683c66045ad16abb1bCE5ad46A64d95f9A25785',
+    weth: '0xE3dbcD53f4Ce1b06Ab200f4912BD35672e68f1FA',
+    creationBlock: 19318,
+    permit2: '0x447B8E40B0CdA8e55F405C86bC635D02d0540aB8',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
+  //lightlink
+  [1890]: {
     router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
     weth: '0xa683c66045ad16abb1bCE5ad46A64d95f9A25785',
     creationBlock: 131406742,
