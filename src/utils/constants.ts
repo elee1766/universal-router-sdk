@@ -340,9 +340,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //hemi
   [43111]: {
-    router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
+    router: '0x533c7A53389e0538AB6aE1D7798D6C1213eAc28B',
     weth: '0x4200000000000000000000000000000000000006',
-    creationBlock: 964033,
+    creationBlock: 1293665,
     permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
