@@ -383,6 +383,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //worldchain
+  [480]: {
+    router: '0x8ac7bee993bb44dab564ea4bc9ea67bf9eb5e743',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 1737559557,
+    permit2: '0x000000000022D473030F116dDEE9F6B43aC78BA3',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
