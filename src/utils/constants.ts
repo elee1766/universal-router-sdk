@@ -329,6 +329,14 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  [50]: {
+    router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
+    weth: '0x951857744785e80e2de051c32ee7b25f9c458c42',
+    creationBlock: 87231190,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //telos
   [40]: {
     router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
