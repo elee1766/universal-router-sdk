@@ -402,7 +402,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //worldchain
   [480]: {
-    router: '0x8ac7bee993bb44dab564ea4bc9ea67bf9eb5e743',
+    router: '0x5d6b0f5335ec95cD2aB7E52f2A0750dd86502435',
     weth: '0x4200000000000000000000000000000000000006',
     creationBlock: 1737559557,
     permit2: '0x000000000022D473030F116dDEE9F6B43aC78BA3',
