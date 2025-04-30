@@ -2380,6 +2380,18 @@
     tiny-invariant "^1.1.0"
     toformat "^2.0.0"
 
+"@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-39":
+  version "4.0.9-39"
+  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-39.tgz#d5b4249e1d5ed852158ad10bd366983cf33775ea"
+  integrity sha512-wBXUgb/kMb7HAFQCQoNIa2oFGi1iuWzj9s0fOnSW4+8+zCtbMMuwUWNpfcXNb7C+imdayd+/1QZjt1WJODgEqw==
+  dependencies:
+    "@ethersproject/address" "^5.0.2"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.4"
+    tiny-invariant "^1.1.0"
+    toformat "^2.0.0"
+
 "@uniswap/swap-router-contracts@^1.1.0", "@uniswap/swap-router-contracts@^1.2.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@uniswap/swap-router-contracts/-/swap-router-contracts-1.3.1.tgz#0ebbb93eb578625618ed9489872de381f9c66fb4"
