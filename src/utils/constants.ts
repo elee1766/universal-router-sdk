@@ -411,7 +411,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //nibiru
   [6900]: {
-    router: '0xaa52bB8110fE38D0d2d2AF0B85C3A3eE622CA455',
+    router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
     weth: '0x1429B38e58b97de646ACd65fdb8a4502c2131484',
     creationBlock: 19842247,
     permit2: '0x807F4E281B7A3B324825C64ca53c69F0b418dE40',
