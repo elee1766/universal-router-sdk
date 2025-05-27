@@ -411,10 +411,10 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //nibiru
   [6900]: {
-    router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
-    weth: '0x1429B38e58b97de646ACd65fdb8a4502c2131484',
-    creationBlock: 19842247,
-    permit2: '0x807F4E281B7A3B324825C64ca53c69F0b418dE40',
+    router: '0xA7E6cB0A6B1BE8b779022A6aFcb097cF0d3Ff4A2',
+    weth: '0x0CaCF669f8446BeCA826913a3c6B96aCD4b02a97',
+    creationBlock: 23658719,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
