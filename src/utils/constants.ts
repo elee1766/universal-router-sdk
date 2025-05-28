@@ -320,6 +320,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  //etherlink
+  [42793]: {
+    router: '0x9db70E29712Cc8Af10c2B597BaDA6784544FF407',
+    weth: '0xc9B53AB2679f573e480d01e0f49e2B5CFB7a3EAb',
+    creationBlock: 14585098,
+    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
   //metal
   [1750]: {
     router: '0x346239972d1fa486FC4a521031BC81bFB7D6e8a4',
