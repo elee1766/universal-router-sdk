@@ -427,6 +427,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
+  // unichain mainnet
+  [130]: {
+    weth: '0x4200000000000000000000000000000000000006',
+    router: '0xef740bf23acae26f6492b10de645d6b98dc8eaf3',
+    creationBlock: 1737568156,
+    permit2: '0x000000000022D473030F116dDEE9F6B43aC78BA3',
+    steth: NOT_SUPPORTED_ON_CHAIN,
+    wsteth: NOT_SUPPORTED_ON_CHAIN,
+  },
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
