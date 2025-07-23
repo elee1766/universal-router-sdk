@@ -2368,22 +2368,10 @@
     "@uniswap/v2-sdk" "^3.2.0"
     "@uniswap/v3-sdk" "^3.10.0"
 
-"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.7", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-44":
-  version "4.0.9-44"
-  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-44.tgz#0537037f30059f0678380cfa182a3b3bca685532"
-  integrity sha512-t5sq8aaqHq4GYmRfeYpLXSEE58yxyRjvR+GxeXeGznBv08/0Naj2Lj7VlBW1D5/++YkxkJ62p2DD/SrDerVjCQ==
-  dependencies:
-    "@ethersproject/address" "^5.0.2"
-    big.js "^5.2.2"
-    decimal.js-light "^2.5.0"
-    jsbi "^3.1.4"
-    tiny-invariant "^1.1.0"
-    toformat "^2.0.0"
-
-"@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-43":
-  version "4.0.9-43"
-  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-43.tgz#be063fa97dae3f5378d23afa171983b6bb1fc2cd"
-  integrity sha512-N6gUEde6DloNi6lKsv3cb4WCoqYoo0oHF+BhlHJGVGJHJO4J7igOnIeTAWMYzKGaGapYkCI/quOFsCpriDKzUA==
+"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.7", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-45":
+  version "4.0.9-45"
+  resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-45.tgz#c4f9acd982fe47acfd73998eb442a03be37b5ee1"
+  integrity sha512-BA4eyJwMVxf2eQ7SFRVbcpeuEZNR2goeo1pTospdIdxr8tqP4FvUSZaUr4Oa1e96gG6kTn5Dq9Bjj9pkrWNk2g==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
