@@ -439,13 +439,12 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   // Matchain
   [698]: {
     weth: '0x4200000000000000000000000000000000000006',
-    router: '0x807F4E281B7A3B324825C64ca53c69F0b418dE4',
-    creationBlock: 37612670,
+    router: '0x9db70E29712Cc8Af10c2B597BaDA6784544FF407',
+    creationBlock: 37614238,
     permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
-  
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
