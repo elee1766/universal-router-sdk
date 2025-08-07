@@ -343,7 +343,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     router: '0x738fD6d10bCc05c230388B4027CAd37f82fe2AF2',
     weth: '0x039e2fB66102314Ce7b64Ce5Ce3E5183bc94aD38',
     creationBlock: 322921,
-    permit2: '0xB952578f3520EE8Ea45b7914994dcf4702cEe578',
+    permit2: '0x000000000022D473030F116dDEE9F6B43aC78BA3',
     steth: NOT_SUPPORTED_ON_CHAIN,
     wsteth: NOT_SUPPORTED_ON_CHAIN,
   },
