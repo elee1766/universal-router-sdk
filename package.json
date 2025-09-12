@@ -1,6 +1,6 @@
 {
   "name": "@gfxlabs/uniswap-universal-router-sdk",
-  "version": "2.0.1-57",
+  "version": "2.0.1-58",
   "description": "sdk for integrating with the Universal Router contracts",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -58,8 +58,8 @@
     "@uniswap/router-sdk": "1.7.1",
     "@uniswap/sdk-core": "npm:@gfxlabs/uniswap-sdk-core@4.0.9-47",
     "@uniswap/universal-router": "1.5.1",
-    "@uniswap/v2-sdk": "^3.2.0",
-    "@uniswap/v3-sdk": "^3.10.0",
+    "@uniswap/v2-sdk": "3.2.0",
+    "@uniswap/v3-sdk": "3.10.0",
     "bignumber.js": "^9.0.2",
     "eslint": "^8.54.0",
     "ethers": "^5.3.1"
