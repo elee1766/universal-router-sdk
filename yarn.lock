@@ -2368,7 +2368,7 @@
     "@uniswap/v2-sdk" "^3.2.0"
     "@uniswap/v3-sdk" "^3.10.0"
 
-"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.7", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-47":
+"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@^4.0.7", "@uniswap/sdk-core@npm:@gfxlabs/uniswap-sdk-core@4.0.9-47":
   version "4.0.9-47"
   resolved "https://registry.yarnpkg.com/@gfxlabs/uniswap-sdk-core/-/uniswap-sdk-core-4.0.9-47.tgz#b063e6ad649d06af37727a1ab2994ab483bf41d6"
   integrity sha512-RMztYj5n1hlMVAiniBv11Bjsee63JQGoTLckkiH27MKOA/Tr59PIbs6y9iD0ugdmh/TZQEhqY7O3oStE3JHqrw==
@@ -2406,6 +2406,17 @@
   resolved "https://registry.yarnpkg.com/@uniswap/v2-core/-/v2-core-1.0.1.tgz#af8f508bf183204779938969e2e54043e147d425"
   integrity sha512-MtybtkUPSyysqLY2U210NBDeCHX+ltHt3oADGdjqoThZaFRDKwM6k1Nb3F0A3hk5hwuQvytFWhrWHOEq6nVJ8Q==
 
+"@uniswap/v2-sdk@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@uniswap/v2-sdk/-/v2-sdk-3.2.0.tgz#2b872cb83ac60ba66dc1d11acd7795b67ca8ceb1"
+  integrity sha512-kBOJ6Iwtgb/2LckLMIzfbPM37/ll0F+33lzPmZlqoJwsT0F2hZdVfAhclufZcSb0Y9RdLXl6372CZJ+lhx8cUQ==
+  dependencies:
+    "@ethersproject/address" "^5.0.0"
+    "@ethersproject/solidity" "^5.0.0"
+    "@uniswap/sdk-core" "^4.0.2"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+
 "@uniswap/v2-sdk@^3.2.0":
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/@uniswap/v2-sdk/-/v2-sdk-3.2.3.tgz#66a27e420fa1a1847365b2003f4776b745eb26cd"
@@ -2438,7 +2449,7 @@
     "@uniswap/v3-core" "^1.0.0"
     base64-sol "1.0.1"
 
-"@uniswap/v3-sdk@^3.10.0":
+"@uniswap/v3-sdk@3.10.0", "@uniswap/v3-sdk@^3.10.0":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@uniswap/v3-sdk/-/v3-sdk-3.10.0.tgz#962c9e598250ced00702d944783c2d9ee3fa12f6"
   integrity sha512-sbmSA1O+Ct960r66Ie/c1rOmVadpwRu8nQ79pGICv0pZJdnFIQ/SReG3F+iC2C2UNNjNP6aC2WDUggXrjyrgnA==
